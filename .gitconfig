@@ -1,0 +1,34 @@
+[push]
+  default = current
+
+[alias]
+  l  = log --oneline --decorate --graph
+  st = status -s -b
+  di = diff
+  co = checkout
+  ci = commit
+  br = branch
+  man = help
+  timeline = !git log --graph --branches --pretty=oneline
+
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+	ui = true
+
+[core]
+	excludesfile = ~/.gitignore
+  whitespace = trailing-space,space-before-tab
+  autocrlf = input
+	editor = subl -w
+
+[apply]
+  whitespace = fix
+
+[branch]
+	autosetuprebase = always
+  
+[push]
+  default = simple
