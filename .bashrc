@@ -26,7 +26,7 @@ export NODE_PATH="$NODE_PATH:$NVM_DIR/$VERSION/lib/node_modules"
 
 # rvm
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
@@ -61,7 +61,10 @@ source ~/bin/git-prompt.sh
 # PS1 prompt
 PS1="\[$BRIGHT_BLUE\]╭\[$BRIGHT_YELLOW\] \t \[$BRIGHT_GREEN\]\u@\h \W\[$BRIGHT_BLUE\]\$(__git_ps1)\n\[$BRIGHT_BLUE\]╰ \$ \[$RESET\]"
 
-# aliases 
+# Load any local settings
+test -f "$HOME/.bash.local" && $HOME/.bash.local&
+
+# aliases
 alias ls='ls -G'
 alias ll='ls -lG'
 alias rs="rsync -zavrR --delete --links"
@@ -73,7 +76,7 @@ alias opendns='sudo networksetup -setdnsservers "Wi-Fi" 208.67.222.222 && sudo n
 alias googledns='sudo networksetup -setdnsservers "Wi-Fi" 8.8.8.8 && sudo networksetup -setdnsservers "Thunderbolt Ethernet" 8.8.8.8'
 
 
-
+# functions
 # drain gearman queue
 # drain_gearman HOSTNAME FUNCTION NAME
   function drain_gearman() {
