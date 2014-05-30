@@ -66,7 +66,9 @@ source ~/bin/git-prompt.sh
 PS1="\[$BRIGHT_BLUE\]╭\[$BRIGHT_YELLOW\] \t \[$BRIGHT_GREEN\]\u@\h \W\[$BRIGHT_BLUE\]\$(__git_ps1)\n\[$BRIGHT_BLUE\]╰ \$ \[$RESET\]"
 
 # Load any local settings
-test -f "$HOME/.bash.local" && $HOME/.bash.local&
+if [[ -r "$HOME/.bash.local" ]]; then
+  source "$HOME/.bash.local"
+fi
 
 # aliases
 alias ls='ls -G'
