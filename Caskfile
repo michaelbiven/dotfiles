@@ -9,10 +9,7 @@ cask install cinch 2> /dev/null
 cask install dropbox 2> /dev/null
 cask install flux 2> /dev/null
 cask install google-chrome 2> /dev/null
-cask install google-chrome-canary 2> /dev/null
-cask install imagealpha 2> /dev/null
-cask install imageoptim 2> /dev/null
 cask install iterm2 2> /dev/null
-cask install miro-video-converter 2> /dev/null
 cask install onepassword 2> /dev/null
 cask install sublime-text3 2> /dev/null
+cask install hazel 2> /dev/null
