@@ -24,9 +24,13 @@ mas 'Ulysses', id: 623795237
 mas 'FoldingText', id: 540003654
 mas 'iA Writer', id: 775737590
 cask '1password'
+cask 'dropbox'
 cask 'cinch'
 cask 'flux'
 cask 'google-chrome'
+cask 'vmware-fusion'
+cask 'virtualbox'
+cask 'iterm2'
 
 
 
