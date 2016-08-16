@@ -7,7 +7,6 @@ brew 'coreutils'
 brew 'findutils', args: ['default-names']
 brew 'gnu-sed', args: ['default-names']
 brew 'bash'
-brew 'bash-compltion'
 brew 'vim', args: ['override-system-vi']
 brew 'ack'
 brew 'git'
