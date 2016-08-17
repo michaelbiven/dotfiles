@@ -14,6 +14,7 @@ brew 'nmap'
 brew 'pv'
 brew 'tree'
 brew 'webkit2png'
+brew 'protobuf'
 mas 'Slack', id: 803453959
 mas 'Noizio', id: 928871589
 mas 'Airmail 2', id: 918858936
