@@ -13,6 +13,7 @@ brew 'git'
 brew 'nmap'
 brew 'pv'
 brew 'tree'
+brew 'watch'
 brew 'webkit2png'
 brew 'protobuf', args: ['devel']
 mas 'Slack', id: 803453959
