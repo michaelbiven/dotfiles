@@ -134,6 +134,13 @@ fs() {
 		du $arg .[^.]* *
 	fi
 }
+
+# View TLS
+function ciphers() {
+  nmap --script ssl-cert,ssl-enum-ciphers -p 443,993 "$@"
+}
+
+
 #
 # Get the common name and all he SANS for a https
 #
