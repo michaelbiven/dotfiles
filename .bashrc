@@ -76,10 +76,29 @@ alias ll='ls -lG'
 alias rs="rsync -zavrR --delete --links"
 alias be='bundle exec'
 alias beep='tput bel'
-alias myip="ifconfig | grep inet | grep -v 127.0.0.1 | awk '{print \$2}' | cut -d: -f2"
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# DNS
 alias masqdns='sudo networksetup -setdnsservers "Wi-Fi" 127.0.0.1 && sudo networksetup -setdnsservers "Thunderbolt Ethernet" 127.0.0.1'
 alias opendns='sudo networksetup -setdnsservers "Wi-Fi" 208.67.222.222 && sudo networksetup -setdnsservers "Thunderbolt Ethernet" 208.67.222.222'
 alias googledns='sudo networksetup -setdnsservers "Wi-Fi" 8.8.8.8 && sudo networksetup -setdnsservers "Thunderbolt Ethernet" 8.8.8.8'
+alias flushdns='dscacheutil -flushcache'
+
+# IP addresses
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias ips="sudo ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Get week number
+alias week='date +%V'
+
+# Pipe my public key to my clipboard.
+alias pubkey="more ~/.ssh/id_ed25519.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+
+# Pipe my private key to my clipboard.
+alias prikey="more ~/.ssh/id_ed25519 | pbcopy | echo '=> Private key copied to pasteboard.'"
 
 
 # functions
@@ -88,5 +107,81 @@ alias googledns='sudo networksetup -setdnsservers "Wi-Fi" 8.8.8.8 && sudo networ
   function drain_gearman() {
     gearman -t 1000 -n -w -h $1-f $2 > /dev/null
   }
+  
+# Create a new directory and enter it
+mkd() {
+	mkdir -p "$@" && cd "$@"
+}
+
+wh() {
+  history | awk '{print $2};' | sort | uniq -c | sort -rn | head -20
+}
+
+# Determine size of a file or total size of a directory
+fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh
+	else
+		local arg=-sh
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@"
+	else
+		du $arg .[^.]* *
+	fi
+}
+
+# Credit: https://gist.github.com/dansimau/f5d8b0b2aefb9c9c46621f4869ccc151
+#
+# Change to the directory of the specified Go package name.
+#
+gg() {
+	paths=($(g "$@"))
+	path_index=0
+
+	if [ ${#paths[@]} -gt 1 ]; then
+		c=1
+		for path in "${paths[@]}"; do
+			echo [$c]: cd ${GOPATH}/${path}
+			c=$((c+1))
+		done
+		echo -n "Go to which path: "
+		read path_index
+
+		path_index=$(($path_index-1))
+	fi
+
+	path=${paths[$path_index]}
+	cd $GOPATH/src/$path
+}
+
+#
+# Print the directories of the specified Go package name.
+#
+g() {
+	local pkg_candidates="$((cd $GOPATH/src && find . -mindepth 1 -maxdepth 5 -type d \( -path "*/$1" -or -path "*/$1.git" \) -print) | sed 's/^\.\///g'))"
+	echo "$pkg_candidates"
+}
+
+#
+# Bash autocomplete for g and gg functions.
+#
+_g_complete()
+{
+    COMPREPLY=()
+
+    local cur
+    local prev
+
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    COMPREPLY=( $(compgen -W "$(for f in $(find "$GOPATH/src" -mindepth 1 -maxdepth 5 -type d -name "${cur}*" ! -name '.*' ! -path '*/.git/*' ! -path '*/test/*' ! -path '*/Godeps/*' ! -path '*/examples/*'); do echo "${f##*/}"; done)" --  "$cur") )
+    return 0
+}
+
+complete -F _g_complete g
+complete -F _g_complete gg
 
 export PATH
+
