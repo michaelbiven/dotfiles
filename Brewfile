@@ -16,6 +16,10 @@ brew 'tree'
 brew 'watch'
 brew 'webkit2png'
 brew 'protobuf', args: ['devel']
+brew 'curl'
+brew 'mtr'
+brew 'pstree'
+brew 'vnstat'
 mas 'Slack', id: 803453959
 mas 'Noizio', id: 928871589
 mas 'Airmail 2', id: 918858936
