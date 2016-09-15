@@ -22,6 +22,7 @@ brew 'pstree'
 brew 'vnstat'
 brew 'fdupes'
 brew 'ipcalc'
+brew 'Testssl'
 mas 'Slack', id: 803453959
 mas 'Noizio', id: 928871589
 mas 'Airmail 2', id: 918858936
