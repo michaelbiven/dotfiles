@@ -23,7 +23,7 @@ brew 'mas'
 brew 'mtr'
 brew 'ncdu'
 brew 'nmap'
-brew 'protobuf', args: ['devel']
+brew 'protobuf'
 brew 'pstree'
 brew 'pv'
 brew 'rbenv'
