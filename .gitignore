@@ -1,1 +1,8 @@
 .DS_Store
+*~
+.gitconfig
+wallpaper
+!.gnupg/gpg*.conf
+*.swp
+.Spotlight-V100
+.Trashes
