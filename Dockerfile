@@ -33,7 +33,7 @@ WORKDIR /home/mbiven
 
 
 # Download and install Go.  GOROOT and GOPATH will be set in dot files
-ENV GO_VERSION=1.9
+ENV GO_VERSION=1.9.1
 RUN curl -LO https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar xzf go${GO_VERSION}.linux-amd64.tar.gz && \
     mv go goroot && \
