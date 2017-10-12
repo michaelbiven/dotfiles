@@ -4,7 +4,7 @@ IMAGE_VERSION ?= latest
 IMAGE_NAME = $(IMAGE_PREFIX)/$(IMAGE_REPO):$(IMAGE_VERSION)
 
 
-PHONY: install bin dotfiles build run kube-run test shellcheck
+.PHONY: install bin dotfiles build run kube-run test shellcheck
 
 install: bin dotfiles
 
