@@ -1,3 +1,6 @@
+# "Just because it's automatic doesn't mean it works."
+# — Daniel J. Bernstein
+
 IMAGE_PREFIX = michaelbiven
 IMAGE_REPO = dotfiles
 IMAGE_VERSION ?= latest

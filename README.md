@@ -2,6 +2,13 @@
 
 Add a few changes after a clean install of Macos 10.13 and a few ideas taken from [Jess](https://github.com/jessfraz/dotfiles) [Frazelle](https://github.com/jessfraz/dockerfiles) and [Joe Beda](https://github.com/jbeda/dotfiles).
 
+> “Ingenious ideas are simple. Ingenious software is simple. 
+> Simplicity is the heart of the Unix philosophy. 
+> The more code lines you have removed, the more progress you have made. 
+> As the number of lines of code in your software shrinks, 
+> the more skilled you have become and the less your software sucks.”
+> — Steve Dekorte
+
 I also wanted to include the basics of how I like to work.
 
 # Guidelines for Happiness and Success
