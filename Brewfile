@@ -6,9 +6,10 @@ brew 'ack'
 brew 'archey'
 brew 'awscli'
 brew 'bash'
-brew 'bash-completion'
+brew 'bash-completion@2'
 brew 'coreutils'
 brew 'curl'
+brew 'docker-machine-driver-xhyve'
 brew 'fdupes'
 brew 'ffmpeg'
 brew 'findutils', args: ['default-names']
@@ -55,8 +56,8 @@ cask 'cinch'
 cask 'flux'
 cask 'google-chrome'
 cask 'iterm2'
+cask 'minikube'
 cask 'nvalt'
 cask 'tunnelblick'
-
-
+cask 'utc-menu-clock'
 
