@@ -1,6 +1,5 @@
 cask_args appdir: '/Applications'
 tap 'caskroom/cask'
-tap "homebrew/science"
 tap 'homebrew/services'
 brew 'ack'
 brew 'archey'
@@ -57,6 +56,3 @@ cask 'google-chrome'
 cask 'iterm2'
 cask 'nvalt'
 cask 'tunnelblick'
-
-
-
