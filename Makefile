@@ -7,7 +7,7 @@ IMAGE_VERSION ?= latest
 IMAGE_NAME = $(IMAGE_PREFIX)/$(IMAGE_REPO):$(IMAGE_VERSION)
 
 
-.PHONY: install bin dotfiles build run kube-run test shellcheck
+.PHONY: install bin dotfiles mac build run kube-run test shellcheck
 
 install: bin dotfiles
 
@@ -31,6 +31,10 @@ dotfiles:
 	sudo chmod 755 $(HOME)/.gnupg;
 	ln -fn $(CURDIR)/.gitignore $(HOME)/.gitignore;
 	git update-index --skip-worktree $(CURDIR)/.gitconfig;
+
+mac:
+	# apply settings from macos.sh
+	~/bin/macos.sh
 
 build:
 	docker build -t $(IMAGE_NAME) .

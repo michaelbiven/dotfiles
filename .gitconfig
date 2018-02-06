@@ -39,3 +39,7 @@
 	pushInsteadOf = "git://github.com/"
 [url "git@github.com:"]
 	pushInsteadOf = "https://github.com/"
+
+[user]
+	name = Michael Biven
+	email = michael@biven.org

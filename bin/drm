@@ -1,0 +1,7 @@
+#!/bin/bash
+# Stop
+sudo docker stop $(sudo docker ps -a -q)
+# Drop
+sudo docker rm $(sudo docker ps -a -q)
+# Roll
+sudo docker rmi $(sudo docker images -q)
