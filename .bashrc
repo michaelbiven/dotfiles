@@ -121,6 +121,26 @@ wh() {
   history | awk '{print $2};' | sort | uniq -c | sort -rn | head -20
 }
 
+# Tired of expanding ls to find out I needed less
+l () {
+    if [[ -z $1 ]]; then
+        ls
+    elif [[ -d $1 ]]; then
+        # echo "$1 is a directory"
+        ls $1
+    elif [[ "$(file -bL --mime $1)" == *"charset=binary"* ]]; then
+        # echo "$1 is a binary"
+        file $1
+    elif [[ -f $1 ]]; then
+        # echo "$1 is a file"
+        less $1
+        file $1
+    else
+        #echo "$1 is not valid"
+        file $1
+    fi
+}
+
 # Determine size of a file or total size of a directory
 fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
