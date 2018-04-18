@@ -7,9 +7,9 @@ IMAGE_VERSION ?= latest
 IMAGE_NAME = $(IMAGE_PREFIX)/$(IMAGE_REPO):$(IMAGE_VERSION)
 
 
-.PHONY: install bin dotfiles mac build run kube-run test shellcheck
+.PHONY: install bin dotfiles initial brew python ruby mac build run kube-run test shellcheck
 
-install: bin dotfiles
+install: bin dotfiles initial brew python ruby
 
 bin:
 	# add aliases for things in bin
@@ -31,6 +31,33 @@ dotfiles:
 	sudo chmod 755 $(HOME)/.gnupg;
 	ln -fn $(CURDIR)/.gitignore $(HOME)/.gitignore;
 	git update-index --skip-worktree $(CURDIR)/.gitconfig;
+
+initial: 
+	# Install Xcode Command Line Tools.
+	xcode-select --install;
+	# install homebrew
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
+
+
+brew:
+	brew prune;
+	brew update;
+	brew bundle;
+
+python:
+	brew install pyenv;
+	pyenv install 3.6.5;
+	pyenv global 3.6.5;
+	eval "$(pyenv init -)";
+	curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python;
+	pipsi install pipenv;
+	pipsi install legit;
+	pipsi install em-keyboard;
+
+ruby:
+	rbenv install 2.4.3;
+	rbenv install 2.5.0;
+	rbenv global 2.5.0;
 
 mac:
 	# apply settings from macos.sh

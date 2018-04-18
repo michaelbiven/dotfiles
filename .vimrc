@@ -13,8 +13,14 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'bkad/vim-terraform'
 Plugin 'uarun/vim-protobuf'
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'plasticboy/vim-markdown'
 call vundle#end()
-filetype plugin indent on
+syntax on
+filetype on
+filetype plugin on 
+filetype indent on
 " END VUNDLE
 
 " colors
@@ -22,6 +28,7 @@ colorscheme nord
 
 " Whitespace
 set nowrap
+set nu
 set tabstop=2 shiftwidth=2
 set softtabstop=2
 set expandtab
@@ -32,6 +39,7 @@ syntax enable
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType go set tabstop=4 softtabstop=4 shiftwidth=4
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
 
 "" Encoding
 set encoding=utf-8

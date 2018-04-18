@@ -34,6 +34,10 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/Dropbox/go
 PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
 
+# python
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PATH=/Users/mbiven/.local/bin:$PATH
 
 if [ -f ~/bin/git-completion.bash ]; then
   . ~/bin/git-completion.bash
