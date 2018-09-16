@@ -24,11 +24,6 @@ PATH="$HOME/bin:$PATH"
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 export NODE_PATH="$NODE_PATH:$NVM_DIR/$VERSION/lib/node_modules"
 
-# rvm
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 # golang
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/Dropbox/go
@@ -37,6 +32,7 @@ PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
 # python
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+pyenv virtualenvwrapper_lazy
 export PATH=/Users/mbiven/.local/bin:$PATH
 
 if [ -f ~/bin/git-completion.bash ]; then

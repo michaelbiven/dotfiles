@@ -46,8 +46,10 @@ brew:
 
 python:
 	brew install pyenv;
-	pyenv install 3.6.5;
-	pyenv global 3.6.5;
+	brew install pyenv-virtualenv;
+	brew install pyenv-virtualenvwrapper;
+	pyenv install 3.6.6;
+	pyenv global 3.6.6;
 	eval "$(pyenv init -)";
 	curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python;
 	pipsi install pipenv;
@@ -55,9 +57,9 @@ python:
 	pipsi install em-keyboard;
 
 ruby:
-	rbenv install 2.4.3;
-	rbenv install 2.5.0;
-	rbenv global 2.5.0;
+	rbenv install 2.4.4;
+	rbenv install 2.5.1;
+	rbenv global 2.5.1;
 
 mac:
 	# apply settings from macos.sh
