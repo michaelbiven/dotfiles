@@ -7,9 +7,9 @@ IMAGE_VERSION ?= latest
 IMAGE_NAME = $(IMAGE_PREFIX)/$(IMAGE_REPO):$(IMAGE_VERSION)
 
 
-.PHONY: install bin dotfiles initial brew python ruby mac build run kube-run test shellcheck
+.PHONY: install bin dotfiles initial brew python ruby node mac build run kube-run test shellcheck
 
-install: bin dotfiles initial brew python ruby
+install: bin dotfiles initial brew python ruby node
 
 bin:
 	# add aliases for things in bin
@@ -38,9 +38,10 @@ initial:
 	# install homebrew
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
 
-
 brew:
+	brew cleanup;
 	brew prune;
+	brew doctor;
 	brew update;
 	brew bundle;
 
@@ -48,6 +49,7 @@ python:
 	brew install pyenv;
 	brew install pyenv-virtualenv;
 	brew install pyenv-virtualenvwrapper;
+	pyenv install 3.5.6;
 	pyenv install 3.6.6;
 	pyenv global 3.6.6;
 	eval "$(pyenv init -)";
@@ -57,9 +59,18 @@ python:
 	pipsi install em-keyboard;
 
 ruby:
+	brew install rbenv;
 	rbenv install 2.4.4;
 	rbenv install 2.5.1;
 	rbenv global 2.5.1;
+
+node:
+	brew install nvm;
+	if [ ! -d "$HOME/.nvm/" ]; then \
+  		mkdir "$HOME/.nvm" \
+	fi;
+	nvm install --lts;
+	nvm install 10.11.0;
 
 mac:
 	# apply settings from macos.sh
