@@ -46,9 +46,6 @@ brew:
 	brew bundle;
 
 python:
-	brew install pyenv;
-	brew install pyenv-virtualenv;
-	brew install pyenv-virtualenvwrapper;
 	pyenv install 3.5.6;
 	pyenv install 3.6.6;
 	pyenv global 3.6.6;
@@ -59,13 +56,11 @@ python:
 	pipsi install em-keyboard;
 
 ruby:
-	brew install rbenv;
 	rbenv install 2.4.4;
 	rbenv install 2.5.1;
 	rbenv global 2.5.1;
 
 node:
-	brew install nvm;
 	if [ ! -d "$HOME/.nvm/" ]; then \
   		mkdir "$HOME/.nvm" \
 	fi;
