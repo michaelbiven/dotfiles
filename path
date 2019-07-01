@@ -1,0 +1,15 @@
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
+
+test -d "$HOME/bin" &&
+PATH="$HOME/bin:$PATH"
+
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+
+#/Users/mbiven/.pyenv/shims
+
+#/usr/local/go/bin
+#/Users/mbiven/go/bin
+
+
+#/Users/mbiven/.rvm/bin

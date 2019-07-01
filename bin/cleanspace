@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#
+# Clean up whitespace in text files.
+# Convert tabs to spaces and strip trailing whitespace on each line.
+#
+
+usage() {
+  echo "Usage:"
+  printf "  %s [options] [path]\n" $(basename $0)
+  echo ""
+  echo "Options:"
+  echo "  -t <indent>       String to use when replacing tabs."
+  echo "  -h                Print this help."
+}
+
+indent="  "
+
+while getopts "nt:" opt; do
+  case $opt in
+    t) indent="$OPTARG" ;;
+    h) usage; exit 0 ;;
+    *) usage; exit 1 ;;
+  esac
+done
+shift $(( OPTIND - 1 ))
+
+[ -n "$1" ] && path="$1" || path=.
+
+files=$(find "$path" -type f | xargs file | grep text | cut -f1 -d:)
+
+for file in $files; do
+  sed -i "s/\t/$indent/g;s/ *$//" "$file"
+done

@@ -16,6 +16,7 @@ Plugin 'arcticicestudio/nord-vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'elixir-editors/vim-elixir'
 call vundle#end()
 syntax on
 filetype on
@@ -49,3 +50,7 @@ set fileencodings=utf-8
 "" Directories for swp files
 set nobackup
 set noswapfile
+
+"" Folding 
+set nofoldenable
+
