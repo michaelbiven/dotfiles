@@ -53,16 +53,16 @@ prompt_git() {
 	fi;
 }
 
-	bold='';
-  reset="\e[0m";
-  black="\e[30;1m";
-  blue="\e[34;1m";
-  cyan="\e[36;1m";
-  green="\e[32;1m";
-  red="\e[31;1m";
-  magenta="\e[35;1m";
-  white="\e[37;1m";
-  yellow="\e[33;1m";
+bold='';
+reset="\e[0m";
+black="\e[30;1m";
+blue="\e[34;1m";
+cyan="\e[36;1m";
+green="\e[32;1m";
+red="\e[31;1m";
+magenta="\e[35;1m";
+white="\e[37;1m";
+yellow="\e[33;1m";
 
 # Highlight the user name when logged in as root.
 if [[ "${USER}" == "root" ]]; then

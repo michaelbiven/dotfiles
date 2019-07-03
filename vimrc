@@ -12,11 +12,12 @@ Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'bkad/vim-terraform'
 Plugin 'uarun/vim-protobuf'
-Plugin 'arcticicestudio/nord-vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'elixir-editors/vim-elixir'
+Plugin 'itchyny/lightline.vim'
+Plugin 'neomake/neomake'
 call vundle#end()
 syntax on
 filetype on
@@ -25,7 +26,6 @@ filetype indent on
 " END VUNDLE
 
 " colors
-colorscheme nord
 
 " Whitespace
 set nowrap
@@ -35,6 +35,9 @@ set softtabstop=2
 set expandtab
 set autoindent
 syntax enable
+
+" Disable folding
+set nofoldenable
 
 " Filetypes
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -51,6 +54,15 @@ set fileencodings=utf-8
 set nobackup
 set noswapfile
 
-"" Folding 
-set nofoldenable
+"" Delete key should work
+set backspace=indent,eol,start
 
+"" status line
+set laststatus=2
+
+
+" =================== vim-terraform ========================
+" Allow vim-terraform to override your .vimrc indentation syntax for matching files.
+"let g:terraform_align=1
+" Run terraform fmt on save.
+let g:terraform_fmt_on_save=1

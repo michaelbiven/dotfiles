@@ -15,11 +15,11 @@ bin:
 
 dotfiles:
 	# add aliases for dotfiles
-	for file in $(shell find $(CURDIR) -name "*" -not -name ".gitignore" -not -name ".git" -not -name ".*.swp" -not -name "Brewfile" -not -name "LICENSE" -not -name "Makefile" -not -name "macos" -not -name "*.md"); do \
+	for file in $(shell find $(CURDIR) -name "*" -not -name "gitignore" -not -name ".git" -not -name ".*.swp" -not -name "Brewfile" -not -name "LICENSE" -not -name "Makefile" -not -name "macos" -not -name "*.md"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/.$$f; \
 	done; \
-	ln -fn $(CURDIR)/.gitignore $(HOME)/.gitignore;
+	ln -fn $(CURDIR)/gitignore $(HOME)/.gitignore;
 	git update-index --skip-worktree $(CURDIR)/.gitconfig;
 
 initial: 
