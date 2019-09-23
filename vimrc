@@ -7,7 +7,7 @@ call vundle#begin()
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'tpope/dispatch.vim'
+Plugin 'tpope/vim-dispatch'
 Plugin 'fatih/vim-go'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'bkad/vim-terraform'
