@@ -3,8 +3,8 @@
 
 [alias]
   	l  = log --oneline --decorate --graph
-  	st = status -s -b
-  	di = diff
+  	s = status -s -b
+  	d = diff
   	co = checkout
   	ci = commit
   	br = branch
@@ -32,6 +32,9 @@
   
 [push]
 	default = simple
+[ghq]
+	vcs = git
+	root = ~/src
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
