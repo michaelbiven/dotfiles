@@ -1,4 +1,3 @@
-# Common configurations and tools used in how I work. 
 
 ```
        __      __  _____ __         
@@ -8,3 +7,4 @@
 \__,_/\____/\__/_/ /_/_/\___/____/  
                                     
 ```
+

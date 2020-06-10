@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+	
+export TERM='xterm-256color';
+
+prompt_git() {
+	local s='';
+	local branchName='';
+
+	# Check if the current directory is in a Git repository.
+	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+
+		# check if the current directory is in .git before running git checks
+		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+
+			# Ensure the index is up to date.
+			git update-index --really-refresh -q &>/dev/null;
+
+			# Check for uncommitted changes in the index.
+			if ! $(git diff --quiet --ignore-submodules --cached); then
+				s+='+';
+			fi;
+
+			# Check for unstaged changes.
+			if ! $(git diff-files --quiet --ignore-submodules --); then
+				s+='!';
+			fi;
+
+			# Check for untracked files.
+			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+				s+='?';
+			fi;
+
+			# Check for stashed files.
+			if $(git rev-parse --verify refs/stash &>/dev/null); then
+				s+='$';
+			fi;
+
+		fi;
+
+		# Get the short symbolic ref.
+		# If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
+		# Otherwise, just give up.
+		branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+			git rev-parse --short HEAD 2> /dev/null || \
+			echo '(unknown)')";
+
+		[ -n "${s}" ] && s=" [${s}]";
+
+		echo -e "${1}${branchName}${2}${s}";
+	else
+		return;
+	fi;
+}
+
+NORMAL="\e[0m";
+BWHITE="\e[37;1m";
+BGREEN="\e[32;1m";
+BBLACK="\e[30;1m";
+BBLUE="\e[34;1m";
+BPURPLE="\e[35;1m";
+BRED="\e[31;1m";
+BYELLOW="\e[33;1m";
+BCYAN="\e[36;1m";
+
+# Title
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]🐧\[${BBLUE}\]\h:\w\[${BWHITE}\]]";
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]\[${BBLUE}\]\h:\w\[${BWHITE}\]]";
+else
+        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]∆\[${BBLUE}\]\h:\w\[${BWHITE}\]]";
+fi
+
+PS1+="\$(prompt_git \"\[${BBLACK}\] on \[${BCYAN}\]\" \"\[${BRED}\]\") "; # Git repository details
+PS1+="\[${BBLACK}\]\$\[${NORMAL} \]";
+

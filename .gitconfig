@@ -1,0 +1,48 @@
+[push]
+  	default = current
+
+[alias]
+  	l  = log --oneline --decorate --graph
+  	s = status -s -b
+  	d = diff
+  	co = checkout
+  	ci = commit
+  	br = branch
+  	man = help
+  	timeline = !git log --graph --branches --pretty=oneline
+
+[color]
+  	status = auto
+  	diff = auto
+  	branch = auto
+  	interactive = auto
+	ui = true
+
+[core]
+	excludesfile = ~/.gitignore
+  	whitespace = trailing-space,space-before-tab
+	autocrlf = input
+	editor = code --wait
+
+[apply]
+  	whitespace = fix
+
+[branch]
+	autosetuprebase = always
+  
+[push]
+	default = simple
+[ghq]
+	vcs = git
+	root = ~/src
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[url "git@github.com:"]
+	pushInsteadOf = "git://github.com/"
+[url "git@github.com:"]
+	pushInsteadOf = "https://github.com/"
+
+[user]
+	name = Michael Biven
+	email = michael@biven.org
