@@ -1,4 +1,3 @@
-# Common configurations and tools used in how I work. 
 
 ```
        __      __  _____ __         
