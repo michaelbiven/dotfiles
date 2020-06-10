@@ -114,6 +114,16 @@ $ stashed files
 EOF
 }
 
+# Convert to lowercase.
+function lc() {
+  tr '[:upper:]' '[:lower:]'
+}
+
+# Convert to uppercase.
+function uc() {
+  tr '[:lower:]' '[:upper:]'
+}
+
 # Credit: https://gist.github.com/dansimau/f5d8b0b2aefb9c9c46621f4869ccc151
 #
 # Change to the directory of the specified Go package name.
@@ -162,6 +172,8 @@ _g_complete()
     COMPREPLY=( $(compgen -W "$(for f in $(find "$GOPATH/src" -mindepth 1 -maxdepth 5 -type d -name "${cur}*" ! -name '.*' ! -path '*/.git/*' ! -path '*/test/*' ! -path '*/Godeps/*' ! -path '*/examples/*'); do echo "${f##*/}"; done)" --  "$cur") )
     return 0
 }
+
+
 
 complete -F _g_complete g
 complete -F _g_complete gg

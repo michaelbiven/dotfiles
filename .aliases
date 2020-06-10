@@ -37,12 +37,6 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 # Show active network interfaces
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
-# DNS
-alias opendns='sudo networksetup -setdnsservers "Wi-Fi" 208.67.222.222 && sudo networksetup -setdnsservers "Thunderbolt Ethernet" 208.67.222.222'
-alias googledns='sudo networksetup -setdnsservers "Wi-Fi" 8.8.8.8 && sudo networksetup -setdnsservers "Thunderbolt Ethernet" 8.8.8.8'
-alias cloudflaredns='sudo networksetup -setdnsservers "Wi-Fi" 1.1.1.1 && sudo networksetup -setdnsservers "Thunderbolt Ethernet" 1.1.1.1'
-alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
-
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
@@ -52,11 +46,12 @@ alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="sudo ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
+# test DNS server receive buffer size
+# https://www.dns-oarc.net/oarc/services/replysizetest
+alias bdns="dig +short rs.dns-oarc.net TXT"
+
 # Get week number
 alias week='date +%V'
-
-# Pipe my public key to my clipboard.
-alias pubkey="more ~/.ssh/id_ed25519.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
 # macOS has no `md5sum`, so use `md5` as a fallback
 command -v md5sum > /dev/null || alias md5sum="md5"
@@ -67,7 +62,12 @@ command -v sha1sum > /dev/null || alias sha1sum="shasum"
 # youtube-dl
 alias yt='youtube-dl --extract-audio --audio-format mp3'
 
+# brew dependencies
+alias brewlist="brew leaves | xargs brew deps --include-build --tree"
+
+
 # open with browser
 alias safari="open -a safari"
 alias brave="open -a brave"
 alias chrome="open -a google\ chrome"
+alias edge="open -a microsoft\ edge"

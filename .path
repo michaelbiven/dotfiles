@@ -1,15 +1,18 @@
+# Note that in .bash_profile asdf is added to the front of PATH
+# towards the end of the file with `. $(brew --prefix asdf)/asdf.sh`.
+# That is run after this file is sourced.
+
+# Explicity set PATH and ignore /private/etc/paths
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 
-test -d "$HOME/bin" &&
-PATH="$HOME/bin:$PATH"
+# Add ~/.local to the PATH
+if [[ -d $HOME/.local/bin ]]; then
+        PATH=$HOME/.local/bin:$PATH
+fi
 
-export PATH="$PYENV_ROOT/bin:$PATH"
+# Creat $HOME/bin if it doesn't exist
+[[ ! -d $HOME/bin ]] || mkdir ~/bin
 
+# Add ~/bin to the $PATH
+[[ :$PATH: == *:$HOME/bin:* ]] || PATH=$HOME/bin:$PATH
 
-#/Users/mbiven/.pyenv/shims
-
-#/usr/local/go/bin
-#/Users/mbiven/go/bin
-
-
-#/Users/mbiven/.rvm/bin

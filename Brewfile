@@ -34,6 +34,7 @@ brew "gnuplot"
 brew "gnutls"
 brew "graphviz"
 brew "gzip"
+brew "hopenpgp-tools"
 brew "htop"
 brew "httpie"
 brew "hugo"
@@ -47,6 +48,7 @@ brew "neofetch"
 brew "neovim"
 brew "nmap"
 brew "pandoc"
+brew "pinentry-mac"
 brew "protobuf"
 brew "pstree"
 brew "pv"
@@ -68,12 +70,15 @@ brew "tree"
 brew "vnstat"
 brew "watch"
 brew "wget"
+brew "ykman"
 brew "youtube-dl"
+brew "yubikey-personalization"
 brew "zlib"
 cask "anki"
 cask "authy"
 cask "bartender"
 cask "burp-suite"
+cask "discord"
 cask "firefox"
 cask "flux"
 #cask "font-go-mono"
@@ -83,6 +88,7 @@ cask "flux"
 #cask "font-source-code-pro"
 #cask "font-source-sans-pro"
 cask "font-source-sans-pro"
+cask "imageoptim"
 cask "iterm2"
 cask "little-snitch"
 cask "microsoft-edge"
@@ -97,7 +103,7 @@ mas "Amphetamine", id: 937984704
 mas "FoldingText", id: 540003654
 mas "Gifox", id: 1461845568
 mas "Kindle", id: 405399194
-mas "Marked 2", id: 890031187d
+mas "Marked 2", id: 890031187
 mas "Micro Snitch", id: 972028355
 mas "Noizio", id: 928871589
 mas "Xcode", id: 497799835

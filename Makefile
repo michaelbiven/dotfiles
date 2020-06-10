@@ -1,64 +1,72 @@
 # "Just because it's automatic doesn't mean it works."
 # — Daniel J. Bernstein
 
-.PHONY: install bin dotfiles initial brew python ruby node mac
+.PHONY: install
+install: bin dotfiles brew python ruby node
 
-install: bin dotfiles initial brew python ruby node mac
-
+.PHONY: bin
 bin:
 	# add aliases for things in bin
-	[ -d ~/T ] || mkdir ~/bin
+	[[ -d $HOME/bin ]] || mkdir ~/bin
 	for file in $(shell find $(CURDIR)/bin -type f -not -name ".*.swp"); do \
 		f=$$(basename $$file); \
-		ln -sf $$file ~/bin/$$f; \
+		ln -sfn $$file $(HOME)/$$f; \
 	done
 
+.PHONY: dotfiles
 dotfiles:
 	# add aliases for dotfiles
-	for file in $(shell find $(CURDIR) -name "*" -not -name "gitignore" -not -name ".git" -not -name ".*.swp" -not -name "Brewfile" -not -name "LICENSE" -not -name "Makefile" -not -name "macos" -not -name "*.md"); do \
+	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".config" -not -name ".github" -not -name ".*.swp" -not -name ".gnupg"); do \
 		f=$$(basename $$file); \
-		ln -sfn $$file $(HOME)/.$$f; \
+		ln -sfn $$file $(HOME)/$$f; \
 	done; \
-	ln -fn $(CURDIR)/gitignore $(HOME)/.gitignore;
+	gpg --list-keys || true;
+	mkdir -p $(HOME)/.gnupg
+	for file in $(shell find $(CURDIR)/.gnupg); do \
+	f=$$(basename $$file); \
+	ln -sfn $$file $(HOME)/.gnupg/$$f; \
+	done; \
+	ln -fn $(CURDIR)/.gitignore $(HOME)/.gitignore;
 	git update-index --skip-worktree $(CURDIR)/.gitconfig;
 
+.PHONY: initial
 initial: 
 	# Install Xcode Command Line Tools.
 	xcode-select --install;
 	# install homebrew
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
 
+.PHONY: brew
 brew:
 	brew cleanup;
 	brew doctor;
 	brew update;
 	brew bundle;
 
+.PHONY: python
 python:
-	pyenv install 3.5.7;
-	pyenv install 3.6.8;
-	pyenv install 3.7.3
-	pyenv global 3.7.3;
-	eval "$(pyenv init -)";
-	curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python;
-	pipsi install pipenv;
-	pipsi install legit;
-	pipsi install em-keyboard;
+	asdf plugin-add python;
+	asdf install python 3.7.7;
+	asdf install python 3.8.3;
+	
+	pip install --upgrade pip;
+	python -m pip install pipx;
+	pipx install poetry;
 
+.PHONY: golang
+	asdf plugin-add golang;
+	asdf install golang 1.14.4;
+
+.PHONY: ruby
 ruby:
-	rbenv install 2.4.6;
-	rbenv install 2.5.5;
-	rbenv global 2.5.5;
+	asdf plugin-add ruby;
+	asdf install ruby 2.7.1;
+	asdf install ruby 2.6.6;
 
+.PHONY: node
 node:
-	if [ ! -d "$HOME/.nvm/" ]; then \
-  		mkdir "$HOME/.nvm" \
-	fi;
-	nvm install --lts;
-	nvm install 12.5.0;
-
-mac:
-	# apply settings from macos.sh
-	$(CURDIR)/macos.sh
+	asdf plugin-add nodejs;
+	asdf install nodejs 12.18.0;
+	asdf install nodejs 14.4.0;
 
 default: install
