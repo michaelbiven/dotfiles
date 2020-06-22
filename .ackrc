@@ -17,6 +17,7 @@
 
 # ignores
 --ignore-directory=is:.terraform
+--ignore-directory=is:terraform.tfstate.d
 --ignore-file=ext:.tfplan
 --ignore-file=is:terraform.tfstate
 --ignore-file=is:terraform.tfstate.backup
