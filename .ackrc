@@ -1,0 +1,23 @@
+# sort by filename
+--sort-files
+
+# case
+--ignore-case
+--smart-case
+
+# display
+# Run ack --help-colors for a list of possible color combinations.
+--color-filename=bright_green
+--color-match=bright_yellow
+--color-lineno=bright_blue
+
+# filetypes
+# Run ack --help-types for a list of all known types, and how they're defined.
+--type-add=terraform=.tf,.tfvars
+
+# ignores
+--ignore-directory=is:.terraform
+--ignore-file=ext:.tfplan
+--ignore-file=is:terraform.tfstate
+--ignore-file=is:terraform.tfstate.backup
+--ignore-directory=is:node_modules

@@ -5,6 +5,9 @@
 # Explicity set PATH and ignore /private/etc/paths
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 
+# Poetry
+export PATH="$HOME/.poetry/bin:$PATH"
+
 # Add ~/.local to the PATH
 if [[ -d $HOME/.local/bin ]]; then
         PATH=$HOME/.local/bin:$PATH
