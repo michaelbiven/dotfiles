@@ -60,6 +60,8 @@ set backspace=indent,eol,start
 "" status line
 set laststatus=2
 
+" vim-go
+let g:go_template_autocreate = 0
 
 " =================== vim-terraform ========================
 " Allow vim-terraform to override your .vimrc indentation syntax for matching files.

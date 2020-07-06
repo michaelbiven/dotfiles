@@ -9,6 +9,9 @@ else # macOS `ls`
 	export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
+# Create a Zettle ID
+alias zettel='date +"%Y%m%d%H%M%S"'
+
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
 

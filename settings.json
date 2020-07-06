@@ -2,8 +2,8 @@
 // Place your settings in this file to overwrite the default settings
 {
     // Controls the font family.
-    "editor.fontFamily": "Operator Mono, Menlo, Monaco, 'Courier New', monospace",
-
+    "editor.fontFamily": "Fira Code, Iosevka, MonoLisa, Operator Mono, Menlo, Monaco, Courier New, monospace",
+    
  // Controls the font size.
     "editor.fontSize": 18,
 

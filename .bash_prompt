@@ -65,13 +65,13 @@ BCYAN="\e[36;1m";
 
 # Title
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]🐧\[${BBLUE}\]\h:\w\[${BWHITE}\]]";
+        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]🐧\[${BBLUE}\]\h:\w\[${BWHITE} \]]";
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]\[${BBLUE}\]\h:\w\[${BWHITE}\]]";
+        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]\[${BBLUE}\]\h:\W\[${BWHITE} \]]";
 else
-        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]∆\[${BBLUE}\]\h:\w\[${BWHITE}\]]";
+        PS1="\[${BWHITE}\][\[${BGREEN}\]\u\[${BBLACK}\]∆\[${BBLUE}\]\h:\w\[${BWHITE} \]]";
 fi
 
 PS1+="\$(prompt_git \"\[${BBLACK}\] on \[${BCYAN}\]\" \"\[${BRED}\]\") "; # Git repository details
-PS1+="\[${BBLACK}\]\$\[${NORMAL} \]";
+PS1+="\[${BBLACK}\]\$ \[${NORMAL} \]";
 
