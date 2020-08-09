@@ -27,6 +27,10 @@ shopt -s nocaseglob;
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend;
 
+# Check the window size after each command and
+# update LINES and COLUMNS if necessary.
+shopt -s checkwinsize
+
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
 
